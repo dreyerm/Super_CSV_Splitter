@@ -26,21 +26,22 @@ read -e -p "Directory: " FILEPATH
 echo
 echo "The filepath you have entered is: $FILEPATH"
 echo
-read -e -p  "Is the filepath correct? Please answer with y/n: "
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-cd $FILEPATH
-echo "Directry changed to $FILEPATH ..."
-echo --------------------------------------------------------
-echo
-else
-		getFilePath
+# Check if the filepath exists, if it does not, call getFilePath function again
+if [ ! -d $FILEPATH ];
+	then echo "$FILEPATH DOES NOT EXIST!"
+		 echo "Please check it and enter again!"
+		 echo
+		 echo
+getFilePath
 fi
 }
 
 # Call the function to get the filepath
 getFilePath
+cd $FILEPATH
+echo "Directry changed to $FILEPATH ..."
+echo --------------------------------------------------------
+echo
 
 
 # Declare the function that gets the file name
@@ -54,7 +55,7 @@ echo
 # Check if filename exists, if it does not, call getFileName function again
 if [ ! -e $FILENAME ]
 	then echo "$FILENAME DOES NOT EXIST!"
-         echo "Please check it and re-enter!"
+         echo "Please check it and enter again!"
          echo
          echo
 getFileName
@@ -65,15 +66,26 @@ fi
 getFileName
 echo "Checking the number of lines of your current file, please wait ..."
 echo
-#Check current amount of lines in file
+# Check current amount of lines in file
 NUMOFLINES=$(wc -l < $FILENAME)
+echo "Checking the filesize of your current file, please wait ..."
+echo --------------------------------------------------------
+# Check size of file in human readable format and assign to a variable called SIZEOFFILE
+SIZEOFFILE=$(ls -lah $FILENAME | awk '{ print $5}')
+echo
+echo "Currently, $FILENAME has:"
+echo
+echo "*** $NUMOFLINES of lines"
+echo "*** $SIZEOFFILE of MegaBytes"
+echo
+echo
+echo "3. What would you like to prefix your filenames with?: "
+echo
+read -e -p "Prefix: " PREFIX
 
 # Declare the function that gets the line count
 getLineCount(){
-
-echo "Currently, $FILENAME has: $NUMOFLINES of lines"
-echo
-echo "Please provide the amount of lines you wish the chunks to be!"
+echo "4. Please provide the amount of lines you wish the chunks to be!"
 echo
 read -e -p 'Amount of lines: ' LINECOUNT
 echo
@@ -91,9 +103,9 @@ then
 	for f in xyz*
 	do
      if [ $n -gt 1 ]; then 
-          echo $HDR > Part${n}.csv
+          echo $HDR > $PREFIX${n}.csv
      fi
-     cat $f >> Part${n}.csv
+     cat $f >> $PREFIX${n}.csv
      rm $f
      ((n++))
 done
