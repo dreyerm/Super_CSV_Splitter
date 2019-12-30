@@ -45,6 +45,7 @@ getFilePath
 # Change the directory to the whatever got stored in the FILEPATH variable
 cd $FILEPATH
 echo "Directry changed to $FILEPATH ..."
+echo
 echo --------------------------------------------------------
 echo
 
@@ -79,6 +80,7 @@ echo
 # Check current amount of lines in file
 NUMOFLINES=$(wc -l < $FILENAME)
 echo "Checking the filesize of your current file, please wait ..."
+echo
 echo --------------------------------------------------------
 
 # Check size of file in human readable format and assign to a variable called SIZEOFFILE
@@ -89,11 +91,12 @@ echo
 echo "*** $NUMOFLINES of lines"
 echo "*** $SIZEOFFILE of MegaBytes"
 echo
+echo --------------------------------------------------------
 echo
 
-echo "3. What would you like to prefix your filenames with?: "
 # Declare the function that gets the filename prefix
 getPrefix(){
+echo "3. What would you like to prefix your filenames with?: "
 echo
 read -e -p "Prefix: " PREFIX
 echo
@@ -110,12 +113,13 @@ fi
 
 # Call the function to get the prefix
 getPrefix
-echo --------------------------------------------------------
 echo
-echo "4. Please provide the amount of lines you wish the chunks to be!"
 
 # Declare the function that gets the line count
 getLineCount(){
+echo --------------------------------------------------------
+echo
+echo "4. Please provide the amount of lines you wish the chunks to be!"
 echo
 
 # Receive the linecount input from user and store it in the LINECOUNT variable
