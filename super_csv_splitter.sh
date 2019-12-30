@@ -48,7 +48,7 @@ echo
 getFileName() {
 echo "2. Please enter the filename of the file you wish to split!"
 echo
-read -e -p 'Filename: ' FILENAME
+read -e -p "Filename: " FILENAME
 echo
 echo "The filename you have provided is: $FILENAME"
 echo
@@ -79,9 +79,27 @@ echo "*** $NUMOFLINES of lines"
 echo "*** $SIZEOFFILE of MegaBytes"
 echo
 echo
+
 echo "3. What would you like to prefix your filenames with?: "
+# Declare the function that gets the filename prefix
+getPrefix(){
 echo
 read -e -p "Prefix: " PREFIX
+echo
+echo "The prefix you have entered is: $PREFIX"
+read -e -p "Are you sure this is correct? Please answer with y/n: " REPLY1
+echo
+if [[ "$REPLY1" =~ ^[Yy]$ ]]
+then
+	getLineCount
+else
+	getPrefix
+fi
+}
+
+# Call the function to get the prefix
+getPrefix
+
 
 # Declare the function that gets the line count
 getLineCount(){
@@ -91,10 +109,12 @@ read -e -p 'Amount of lines: ' LINECOUNT
 echo
 echo The amount of lines you have provided is: $LINECOUNT
 echo
-read -e -p "Are you sure this is the correct amount? Please answer with y/n: "
+read -e -p "Are you sure this is the correct amount? Please answer with y/n: " REPLY2
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ "$REPLY2" =~ ^[Yy]$ ]]
 then
+	echo
+	echo
 	echo
 	echo Executing script ...
 	HDR=$(head -1 $FILENAME)
@@ -113,7 +133,6 @@ else
 	getLineCount
 fi
 }
-getLineCount
 echo
 echo
 echo Split completed! Please check your $FILEPATH directory for the output!
