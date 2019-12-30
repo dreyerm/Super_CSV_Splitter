@@ -22,10 +22,13 @@ echo
 getFilePath() {
 echo "1. Please enter the directory location!"
 echo
+
+# Receive directory location input from user and store it in the FILEPATH variable
 read -e -p "Directory: " FILEPATH
 echo
 echo "The filepath you have entered is: $FILEPATH"
 echo
+
 # Check if the filepath exists, if it does not, call getFilePath function again
 if [ ! -d $FILEPATH ];
 	then echo "$FILEPATH DOES NOT EXIST!"
@@ -38,6 +41,8 @@ fi
 
 # Call the function to get the filepath
 getFilePath
+
+# Change the directory to the whatever got stored in the FILEPATH variable
 cd $FILEPATH
 echo "Directry changed to $FILEPATH ..."
 echo --------------------------------------------------------
@@ -48,10 +53,13 @@ echo
 getFileName() {
 echo "2. Please enter the filename of the file you wish to split!"
 echo
+
+# Receive the filename input from user and store it in the FILENAME variable
 read -e -p "Filename: " FILENAME
 echo
 echo "The filename you have provided is: $FILENAME"
 echo
+
 # Check if filename exists, if it does not, call getFileName function again
 if [ ! -e $FILENAME ]
 	then echo "$FILENAME DOES NOT EXIST!"
@@ -64,12 +72,15 @@ fi
 
 # Call the function to get the filename
 getFileName
+
 echo "Checking the number of lines of your current file, please wait ..."
 echo
+
 # Check current amount of lines in file
 NUMOFLINES=$(wc -l < $FILENAME)
 echo "Checking the filesize of your current file, please wait ..."
 echo --------------------------------------------------------
+
 # Check size of file in human readable format and assign to a variable called SIZEOFFILE
 SIZEOFFILE=$(ls -lah $FILENAME | awk '{ print $5}')
 echo
@@ -100,15 +111,13 @@ fi
 # Call the function to get the prefix
 getPrefix
 
-
+echo "4. Please provide the amount of lines you wish the chunks to be!"
 # Declare the function that gets the line count
 getLineCount(){
-echo "4. Please provide the amount of lines you wish the chunks to be!"
 echo
 read -e -p 'Amount of lines: ' LINECOUNT
 echo
 echo The amount of lines you have provided is: $LINECOUNT
-echo
 read -e -p "Are you sure this is the correct amount? Please answer with y/n: " REPLY2
 echo
 if [[ "$REPLY2" =~ ^[Yy]$ ]]
