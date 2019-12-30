@@ -110,16 +110,22 @@ fi
 
 # Call the function to get the prefix
 getPrefix
-
+echo --------------------------------------------------------
+echo
 echo "4. Please provide the amount of lines you wish the chunks to be!"
+
 # Declare the function that gets the line count
 getLineCount(){
 echo
+
+# Receive the linecount input from user and store it in the LINECOUNT variable
 read -e -p 'Amount of lines: ' LINECOUNT
 echo
 echo The amount of lines you have provided is: $LINECOUNT
 read -e -p "Are you sure this is the correct amount? Please answer with y/n: " REPLY2
 echo
+
+# If answered with Y or y, execute the script.
 if [[ "$REPLY2" =~ ^[Yy]$ ]]
 then
 	echo
