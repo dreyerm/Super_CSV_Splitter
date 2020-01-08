@@ -18,6 +18,45 @@ echo
 echo
 echo
 
+
+# Declare the function that gets the line count
+getLineCount(){
+echo --------------------------------------------------------
+echo
+echo "4. Please provide the amount of lines you wish the chunks to be!"
+echo
+
+# Receive the linecount input from user and store it in the LINECOUNT variable
+read -e -p 'Amount of lines: ' LINECOUNT
+echo
+echo The amount of lines you have provided is: $LINECOUNT
+read -e -p "Are you sure this is the correct amount? Please answer with y/n: " REPLY2
+echo
+
+# If answered with Y or y, execute the script.
+if [[ "$REPLY2" =~ ^[Yy]$ ]]
+then
+	echo
+	echo
+	echo
+	echo Executing script ...
+	HDR=$(head -1 $FILENAME)
+	split -l $LINECOUNT $FILENAME xyz
+	n=1
+	for f in xyz*
+	do
+     if [ $n -gt 1 ]; then 
+          echo $HDR > $PREFIX${n}.csv
+     fi
+     cat $f >> $PREFIX${n}.csv
+     rm $f
+     ((n++))
+done
+else
+	getLineCount
+fi
+}
+
 # Declare the function that gets the file path
 getFilePath() {
 echo "1. Hit ENTER or write a period to use your current working directory. Otherwise, enter your location manually!"
