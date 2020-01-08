@@ -20,14 +20,27 @@ echo
 
 # Declare the function that gets the file path
 getFilePath() {
-echo "1. Please enter the directory location!"
+echo "1. Hit ENTER or write a period to use your current working directory. Otherwise, enter your location manually!"
 echo
 
 # Receive directory location input from user and store it in the FILEPATH variable
 read -e -p "Directory: " FILEPATH
 echo
-echo "The filepath you have entered is: $FILEPATH"
+
+# Check if no filepath was entered, in which case we will assume the current working directory. Else, use user input
+if [ -z $FILEPATH ]
+	then echo "The filepath you have entered is: $PWD"
+	FILEPATH="$PWD"
+	else
+		echo "The filepath you have entered is: $FILEPATH"
+fi
 echo
+
+# Check if input is a period, in which case we will assume the current working directory
+if [ "$FILEPATH" == "." ]
+	then FILEPATH="$PWD"
+		echo "The filepath you have entered is: $FILEPATH"
+fi
 
 # Check if the filepath exists, if it does not, call getFilePath function again
 if [ ! -d $FILEPATH ];
