@@ -34,6 +34,6 @@ To make the alias permanent, please enter:
 
 ```vim ~/.bashrc```
 ```#My custom aliases
-alias commandname="source /location/scriptname.sh"```
+```alias commandname="source /location/scriptname.sh"```
 
 Restart terminal for the alias to take effect. Obviously replace the example above with what works best for you.
