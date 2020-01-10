@@ -32,8 +32,9 @@ When now typing ```csvsplit``` , it will automatically execute the script.
 
 To make the alias permanent, please enter:
 
-```vim ~/.bashrc```<br/>
+```sudo vim ~/.bash_profile```<br/>
+Enter your password
 ```#My custom aliases```<br/>
-```alias commandname="source /location/scriptname.sh"```<br/>
+```alias commandname="source ~/location/scriptname.sh"```<br/>
 
 Restart terminal for the alias to take effect. Obviously replace the example above with what works best for you.
