@@ -33,7 +33,7 @@ When now typing ```csvsplit``` , it will automatically execute the script.
 To make the alias permanent, please enter:
 
 ```sudo vim ~/.bash_profile```<br/>
-Enter your password
+Enter your password<br/>
 ```#My custom aliases```<br/>
 ```alias commandname="source ~/location/scriptname.sh"```<br/>
 
