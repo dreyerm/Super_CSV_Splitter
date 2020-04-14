@@ -37,7 +37,10 @@ Enter your password<br/>
 ```#My custom aliases```<br/>
 ```alias commandname="source ~/location/scriptname.sh"```<br/>
 
-Restart terminal for the alias to take effect. Obviously replace the example above with what works best for you.
+Restart terminal for the alias to take effect, or restart bash_profile by typing:<br/>
+```source .bash_profile``` <br/>
+
+Obviously replace the example above with what works best for you.
 
 An example:
 
@@ -47,10 +50,10 @@ An example:
 4. I navigated to the new directory: ```cd bash_scripts```<br/>
 5. I create the script file: ```vim super_csv_splitter.sh``` or ```nano super_csv_splitter.sh```<br/>
 6. I paste the entire code of the script in the terminal, and save the file<br/>
-7. I open my bash_profile: ```sudo ~/.bash_profile```<br/>
+7. I open my bash_profile: ```sudo vim ~/.bash_profile```<br/>
 8. I enter my password<br/>
 9. I add a comment that indicates what is going to follow, are my custom aliases: ```# My Custom Aliases```<br/>
-10. I add the following line: ```alias csvsplitter="source ~/.bash_scripts/super_csv_splitter.sh```<br/>
+10. I add the following line: ```alias csvsplitter="source ~/bash_scripts/super_csv_splitter.sh```<br/>
 11. I save the file<br/>
 12. I exit terminal and restart terminal<br/>
 13. If I now simply type: ```csvsplitter``` , regardless which working directory I am in, the script will start
