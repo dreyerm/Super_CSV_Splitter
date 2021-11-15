@@ -16,9 +16,10 @@ It currently has the following options available:
 
 1. Open terminal
 2. Go to directory of your choice, where you wish to store the script
-3. Using vim or nano, create a new file and paste the code in terminal
-4. Save file as: scriptname.sh
-5. Execute script by typing: ```. ./scriptname.sh```  OR  by typing: ```source ./scriptname.sh```
+3. Clone the repo using git clone https://github.com/dreyerm/Super_CSV_Splitter  OR
+4. Using vim or nano, create a new file and paste the code in terminal
+5. Save file as: scriptname.sh
+6. Execute script by typing: ```. ./scriptname.sh```  OR  by typing: ```source ./scriptname.sh```
 
 You can also create an alias if this is easier, by typing:
 
